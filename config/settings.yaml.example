@@ -1,0 +1,16 @@
+# iCorp Deploy Tool — Configuration Template
+# Copy this file to <env>_credentials.env and fill in real values.
+# NEVER commit actual credentials to the repository.
+
+# Database
+DB_HOST=localhost
+DB_PORT=5432
+DB_USER=phoenix_dev
+DB_PASS=CHANGE_ME
+
+# API
+API_URL=https://api.staging.icorp.local
+API_KEY=CHANGE_ME
+
+# Deployment
+DEPLOY_TOKEN=CHANGE_ME
