@@ -10,6 +10,7 @@ def load_config(env):
     config_path = f"config/{env}_credentials.env"
     if not os.path.exists(config_path):
         print(f"Error: config file not found: {config_path}")
+        print("  Hint: copy config/settings.yaml.example and fill in values.")
         sys.exit(1)
     config = {}
     with open(config_path) as f:
@@ -22,10 +23,21 @@ def load_config(env):
 
 
 def deploy(env, target):
-    config = load_config(env)
+    try:
+        config = load_config(env)
+    except Exception as e:
+        print(f"Error loading config for {env}: {e}", file=sys.stderr)
+        sys.exit(1)
+
+    required = ["DB_HOST", "API_URL"]
+    missing = [k for k in required if k not in config]
+    if missing:
+        print(f"Error: missing config keys: {', '.join(missing)}", file=sys.stderr)
+        sys.exit(1)
+
     print(f"Deploying to {target} ({env})...")
-    print(f"  Database: {config.get('DB_HOST', 'unknown')}")
-    print(f"  API endpoint: {config.get('API_URL', 'unknown')}")
+    print(f"  Database: {config['DB_HOST']}")
+    print(f"  API endpoint: {config['API_URL']}")
     print("  Deployment complete.")
 
 
