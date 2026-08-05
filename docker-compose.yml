@@ -1,0 +1,21 @@
+version: "3.8"
+services:
+  api:
+    image: registry.icorp.internal/api:dev
+    ports: ["8080:8080"]
+    env_file: [config/dev.env]
+    depends_on: [db]
+  worker:
+    image: registry.icorp.internal/worker:dev
+    env_file: [config/dev.env]
+    depends_on: [db]
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: phoenix
+      POSTGRES_USER: phoenix_dev
+      POSTGRES_PASSWORD: localdev123
+    ports: ["5432:5432"]
+    volumes: [pgdata:/var/lib/postgresql/data]
+volumes:
+  pgdata:
