@@ -1,6 +1,10 @@
 *.env
+!config/*.example
+!config/settings.yaml.example
+!config/staging.template.env
 *.pem
 *.key
 __pycache__/
 .venv/
 .DS_Store
+deploy.log
