@@ -2,24 +2,27 @@
 
 Internal deployment tooling for Project Phoenix.
 
-## Usage
+## Quick Start
 
 ```bash
-python deploy.py --env production --target api
+pip install -r requirements.txt
+cp config/dev.env.example config/dev.env
+python deploy.py --env staging --target all
 ```
 
-## Health Check
+## Local Development
 
 ```bash
-python healthcheck.py https://phoenix.icorp.internal
+docker-compose up -d
+python healthcheck.py http://localhost:8080
 ```
 
-## Configuration
+## Rollback
 
-Copy `config/config.template.env` to `config/production.env` and fill in your values.
-**Never commit credentials to this repository.**
+```bash
+python rollback.py api --env production
+```
 
-## Team
+## Contributing
 
-- Erik Nilsson (maintainer)
-- Sara Lindberg (deployment automation)
+See [CONTRIBUTING.md](CONTRIBUTING.md).
