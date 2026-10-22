@@ -1,20 +1,25 @@
-# Phoenix Deploy Tool
+# Phoenix Deploy
 
-Internal deployment automation for iCorp's Project Phoenix.
+Internal deployment tooling for Project Phoenix.
 
 ## Usage
 
-```
-python deploy.py --env production --target phoenix-api
+```bash
+python deploy.py --env production --target api
 ```
 
-## Requirements
+## Health Check
 
-- Python 3.8+
-- SSH access to deploy targets
-- Valid credentials configured via environment files in `config/`
+```bash
+python healthcheck.py https://phoenix.icorp.internal
+```
+
+## Configuration
+
+Copy `config/config.template.env` to `config/production.env` and fill in your values.
+**Never commit credentials to this repository.**
 
 ## Team
 
-Maintained by the Infrastructure & Platform team.
-Questions? Reach out on #infra-deploy.
+- Erik Nilsson (maintainer)
+- Sara Lindberg (deployment automation)
