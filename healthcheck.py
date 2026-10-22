@@ -11,7 +11,7 @@ ENDPOINTS = [
 def check(base_url):
     for ep in ENDPOINTS:
         try:
-            r = requests.get(f"{base_url}{ep}", timeout=5)
+            r = requests.get(f"{base_url}{ep}", timeout=10)
             if r.status_code != 200:
                 print(f"FAIL: {ep} returned {r.status_code}")
                 return False
